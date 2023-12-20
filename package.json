@@ -1,0 +1,23 @@
+{
+  "name": "namastereactjs",
+  "version": "1.0.0",
+  "description": "This is Namaste React by Pranoti Patil",
+  "main": "App.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pranotipatil23/NamasteReactJS.git"
+  },
+  "keywords": [],
+  "author": "Pranoti Patil",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pranotipatil23/NamasteReactJS/issues"
+  },
+  "homepage": "https://github.com/pranotipatil23/NamasteReactJS#readme",
+  "devDependencies": {
+    "parcel": "^2.10.3"
+  }
+}
