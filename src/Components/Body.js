@@ -10,7 +10,6 @@ const Body = () => {
   const [listOfRestaurants, setListOfRestaurants] = useState([]);
   const [filteredRestaurants, setFilteredRestaurants] = useState([]);
   const onlineStatus = useOnlineStatus();
-  const [offers, setOffers] = useState(null);
 
   const [searchText, setSearchText] = useState("");
 
@@ -46,7 +45,7 @@ const Body = () => {
   return listOfRestaurants.length === 0 ? (
     <Shimmer />
   ) : (
-    <div className="body">
+    <div className="min-h-screen flex flex-col items-center justify-center">
       <div className="filter flex">
         <div className="m-4 p-4">
           <input
@@ -82,19 +81,21 @@ const Body = () => {
           </button>
         </div>
       </div>
-      <div className="restaurant-container flex flex-wrap">
-        {filteredRestaurants.map((restaurant) => (
-          <Link
-            to={"/restaurants/" + restaurant.info.id}
-            key={restaurant.info.id}
-          >
-            {restaurant.info.aggregatedDiscountInfoV3 ? (
-              <RestaurantCardOffers restaurants={restaurant} />
-            ) : (
-              <RestaurantCard restaurants={restaurant} />
-            )}
-          </Link>
-        ))}
+      <div className="body flex items-center justify-center">
+        <div className="restaurant-container flex flex-wrap m-4 w-3/4">
+          {filteredRestaurants.map((restaurant) => (
+            <Link
+              to={"/restaurants/" + restaurant.info.id}
+              key={restaurant.info.id}
+            >
+              {restaurant.info.aggregatedDiscountInfoV3 ? (
+                <RestaurantCardOffers restaurants={restaurant} />
+              ) : (
+                <RestaurantCard restaurants={restaurant} />
+              )}
+            </Link>
+          ))}
+        </div>
       </div>
     </div>
   );
