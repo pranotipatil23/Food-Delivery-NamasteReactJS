@@ -98,5 +98,26 @@ import {Component/Data} from "path"
 - they are normal javascript utility functions
 - written by Facebook developers
 - where did they write it - in React
-- useState()  -- superpowerful state variables in react
+- useState() -- superpowerful state variables in react
 - useEffect()
+
+## Routing in WebApps
+
+- Client Side Routing
+- Server Side Routing (Network Call)
+
+## Class based component life cycle
+
+-- whenever a class is load or instantiated a constructor is called
+-- constructor gets called first
+-- render method will get called.
+-- componentDidMount() will get called.
+-- if a parent class has componentDidMount() then it first finishes lifecycle of child class and then
+parent class's componentDidMount() will be called.
+-- componentDidUpdate() will get called.
+
+## use case of componentDidMount()
+
+-- to call api calls
+-- why do we call api in here ?
+-- because we want to call api as soon as react renders the class and filled data with it and re-render the app.

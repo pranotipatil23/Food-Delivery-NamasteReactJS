@@ -1,55 +1,57 @@
-import RestaurantCard from "./RestaurantCard";
+import RestaurantCard, { withOffers } from "./RestaurantCard";
 import { restaurants } from "../utils/mockData";
 import { useEffect, useState } from "react";
 import Shimmer from "./Shimmer";
+import { Link } from "react-router-dom";
+import useOnlineStatus from "../utils/useOnlineStatus";
+import { CARDS_URL } from "../utils/constants";
 
 const Body = () => {
   const [listOfRestaurants, setListOfRestaurants] = useState([]);
   const [filteredRestaurants, setFilteredRestaurants] = useState([]);
+  const onlineStatus = useOnlineStatus();
+  const [offers, setOffers] = useState(null);
 
   const [searchText, setSearchText] = useState("");
+
+  const RestaurantCardOffers = withOffers(RestaurantCard);
 
   useEffect(() => {
     fetchData();
   }, []);
 
   const fetchData = async () => {
-    const data = await fetch(
-      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=19.210587&lng=72.878862&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
-    );
+    const data = await fetch(CARDS_URL);
 
     const json = await data.json();
+
+    //All rest list
     setListOfRestaurants(
       json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants
     );
+
+    //Filtered rest list
     setFilteredRestaurants(
       json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants
     );
   };
 
-  /* const handleFilterEvent = () => {
-    setTopRatedRest(
-      restaurants.filter((res) => {
-        res.info.avgRating > 4;
-      })
+  if (onlineStatus == false)
+    return (
+      <h1>
+        Looks like you are offline. Please check your internet connection.
+      </h1>
     );
-  }; */
-
-  const handleSearchText = (event) => {
-    // Filter the restaurant card and update UI
-    // searchText
-    setSearchText(event.target.value);
-  };
 
   return listOfRestaurants.length === 0 ? (
     <Shimmer />
   ) : (
     <div className="body">
-      <div className="filter">
-        <div className="search">
+      <div className="filter flex">
+        <div className="m-4 p-4">
           <input
             type="text"
-            className="search-box"
+            className="border border-solid border-black"
             value={searchText}
             onChange={(e) => setSearchText(e.target.value)}
           />{" "}
@@ -61,29 +63,37 @@ const Body = () => {
               );
               setFilteredRestaurants(filteredText);
             }}
+            className="px-4 py-2 m-4 bg-green-100 rounded-lg"
           >
             Search
           </button>
         </div>
-        <button
-          className="filter-btn"
-          onClick={() => {
-            const filteredList = listOfRestaurants.filter(
-              (res) => res.info.avgRating > 4
-            );
-            console.log(filteredList);
-            setFilteredRestaurants(filteredList);
-          }}
-        >
-          Top Rated Restaurants
-        </button>
+        <div className="search p-4 flex items-center">
+          <button
+            className="filter-btn px-4 py-2 bg-gray-100 rounded-lg"
+            onClick={() => {
+              const filteredList = listOfRestaurants.filter(
+                (res) => res.info.avgRating > 4
+              );
+              setFilteredRestaurants(filteredList);
+            }}
+          >
+            Top Rated Restaurants
+          </button>
+        </div>
       </div>
-      <div className="restaurant-container">
-        {filteredRestaurants.map((restaurantList) => (
-          <RestaurantCard
-            key={restaurantList.info.id}
-            restaurants={restaurantList}
-          />
+      <div className="restaurant-container flex flex-wrap">
+        {filteredRestaurants.map((restaurant) => (
+          <Link
+            to={"/restaurants/" + restaurant.info.id}
+            key={restaurant.info.id}
+          >
+            {restaurant.info.aggregatedDiscountInfoV3 ? (
+              <RestaurantCardOffers restaurants={restaurant} />
+            ) : (
+              <RestaurantCard restaurants={restaurant} />
+            )}
+          </Link>
         ))}
       </div>
     </div>

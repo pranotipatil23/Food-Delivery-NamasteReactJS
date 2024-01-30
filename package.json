@@ -20,12 +20,15 @@
   "homepage": "https://github.com/pranotipatil23/NamasteReactJS#readme",
   "devDependencies": {
     "parcel": "^2.10.3",
+    "postcss": "^8.4.33",
     "prettier": "3.1.1",
-    "process": "^0.11.10"
+    "process": "^0.11.10",
+    "tailwindcss": "^3.4.1"
   },
   "dependencies": {
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.21.1"
   },
   "browserslist": [
     "last 2 versions"
