@@ -1,7 +1,7 @@
 import { useContext, useState } from "react";
-import { LOGO_URL } from "../utils/constants";
 import { Link } from "react-router-dom";
 import UserContext from "../utils/UserContext";
+import swiggyLogo from "../resources/swiggy.jpeg";
 
 const Header = () => {
   const [isLoggedIn, setIsLoggedIn] = useState("Login");
@@ -13,11 +13,11 @@ const Header = () => {
   };
 
   return (
-    <div className="flex justify-between bg-pink-100 shadow-lg">
+    <div className="flex items-center justify-center bg-white shadow-lg">
       <div className="logo-container">
-        <img className="w-56" src={LOGO_URL} alt="food-logo" />
+        <img className="w-20" src={swiggyLogo} alt="food-logo" />
       </div>
-      <div className="flex items-center">
+      <div className="">
         <ul className="flex p-4 m-4">
           <li className="px-4">
             <Link to="/">Home</Link>
