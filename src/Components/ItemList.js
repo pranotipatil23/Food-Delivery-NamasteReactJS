@@ -1,4 +1,3 @@
-import { CDN_URL } from "../utils/constants";
 import AddRestaurant from "./AddRestaurant";
 
 const ItemList = ({ items }) => {

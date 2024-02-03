@@ -10,7 +10,7 @@ const RestaurantCard = (props) => {
   console.log(info);
 
   return (
-    <div className="res-card m-4 p-4 w-[324px] h-[375px] max-h-[400px] max-w-[350px] rounded-lg hover:bg-gray-50">
+    <div className="res-card m-4 p-4 w-[324px] h-[375px] max-h-[400px] max-w-[350px] rounded-lg hover:bg-gray-100">
       <div className="mt-4">
         <img
           className="res-logo rounded-lg w-full h-48 object-cover"

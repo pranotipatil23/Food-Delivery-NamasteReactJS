@@ -121,3 +121,40 @@ parent class's componentDidMount() will be called.
 -- to call api calls
 -- why do we call api in here ?
 -- because we want to call api as soon as react renders the class and filled data with it and re-render the app.
+
+# Redux Toolkit
+
+-- Install @reduxjs/toolkit, react-redux
+-- Build our store
+-- Connect our store to the App
+-- Create slice
+
+# Write data to slice
+
+-- Dispatch an action
+-- call a reducer function
+-- update the slice
+
+# Read data from slice
+
+-- subscribe the component using selector
+
+# Types of testing (developer)
+
+-- Unit Testing
+-- Integration Testing
+-- End to End - E2E Testing
+
+# how to setup react testing library
+
+-- react testing library uses Jest
+-- install react testing library
+-- install jest
+-- install babel-jest, @babel/core @babel/preset-env
+-- configure babel-config.js
+-- configure parcel config file to disable default babel transpilation
+-- jest configuration -> npx jest --init
+-- install jest-environment-jsdom
+-- enable jsx in the test -- @@babel/preset-react to work jsx in test cases
+-- include @babel/preset-react inside babel config
+-- install testing-library/jest

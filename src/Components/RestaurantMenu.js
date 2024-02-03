@@ -9,7 +9,7 @@ const RestaurantMenu = () => {
 
   const restInfo = useRestaurantMenu(restId);
 
-  const [showItems, setShowItems] = useState(0);
+  const [showItems, setShowItems] = useState();
 
   if (restInfo == null) return <Shimmer />;
 
@@ -26,8 +26,6 @@ const RestaurantMenu = () => {
         c.card?.card?.["@type"] ==
         "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory"
     );
-
-  console.log(showItems + " in menu");
 
   return (
     <div className="text-center">
