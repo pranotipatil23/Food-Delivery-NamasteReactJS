@@ -2,11 +2,15 @@ import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import UserContext from "../utils/UserContext";
 import swiggyLogo from "../resources/swiggy.jpeg";
+import { useSelector } from "react-redux";
 
 const Header = () => {
   const [isLoggedIn, setIsLoggedIn] = useState("Login");
 
   const { loggedInUser } = useContext(UserContext);
+
+  // subscribing to the store using a selector
+  const cart = useSelector((store) => store.cart.items);
 
   const setBtnName = () => {
     isLoggedIn === "Login" ? setIsLoggedIn("Logout") : setIsLoggedIn("Login");
@@ -28,7 +32,9 @@ const Header = () => {
           <li className="px-4">
             <Link to="/contact">Contact Us</Link>
           </li>
-          <li className="px-4">Cart</li>
+          <li className="px-4">
+            <Link to="/cart">Cart ({cart.length})</Link>
+          </li>
           <li className="px-4">
             <button className="login" onClick={setBtnName}>
               {isLoggedIn}
